@@ -1,0 +1,238 @@
+@import 'variaints.module.sass'
+@mixin animate($animation,$duration,$method,$times)
+    animation: $animation $duration $method $times
+@mixin keyframes($name)
+    @keyframes #{$name}
+        @content
+.title
+    color: $main-color
+    font-size: 24px
+    font-weight: 700
+    line-height: 100% 
+    letter-spacing: 4.32px
+.selector-wrapper
+    width: 100%
+    padding: 32px 0 0 0
+    display: flex
+    justify-content: space-between
+    
+.selector-outer
+    width: 50%
+    padding-bottom: 24px
+.selector-inner
+    font-size: 18px
+    display: flex
+    gap: 8px
+    flex-direction: column
+    .selector-select-search
+        display: flex
+        margin-bottom: 34px
+        gap: 16px
+        .select-wrapper
+            height: 40px
+            width: 30% 
+            min-width: 150px
+            border-radius: 8px
+            background: $gray-color
+            display: flex
+            overflow: hidden
+            position: relative
+            &::before
+                content: ""
+                position: absolute
+                border-right: 5px solid transparent
+                border-left: 5px solid transparent
+                border-top: 5px solid $black-color
+                top: 50%
+                right:16px
+            select
+                width: 100%
+                background: $gray-color
+                font-size: 18px
+                text-indent: 16px 
+                font-family: 'Noto Sans TC', sans-serif
+                option
+                    font-weight: 500
+            
+        .search-wrapper
+            border-radius: 8px
+            width: 70%
+            min-width: 150px
+            overflow: hidden
+            position: relative
+            input
+                height: 40px
+                width: 100%
+                background: $gray-color
+                text-indent: 16px 
+                font-size: 18px
+                font-weight: 500
+                font-family: 'Noto Sans TC', sans-serif
+                &::placeholder
+                    color: $dark-gray-color
+            img
+                position: absolute
+                top: 25%
+                right: 16px
+                width: 18px
+                height: 18px
+    .checkall-wrapper
+        display: flex
+        gap: 13px
+        align-items: center
+        margin-bottom: 24px
+        input
+            display: none
+        .check-mark
+                position: relative
+                width: 24px
+                height: 24px
+                border: 2px solid $dark-gray-color
+                border-radius: 2px
+        input:checked ~ .check-mark
+                background: $main-color
+                border: none
+                transition: all 0.1s ease
+                &::before
+                    position: absolute
+                    content: ''
+                    left: 7px
+                    top: 1px
+                    width: 7px
+                    height: 13px
+                    border: solid $white-color
+                    border-width: 0 3px 3px 0
+                    -webkit-transform: rotate(45deg)
+                    -ms-transform: rotate(45deg)
+                    transform: rotate(45deg)
+    .check-wrapper
+        display: flex
+        flex-wrap: wrap
+        gap: 15px
+        .check
+            display: flex
+            gap: 13px
+            white-space: nowrap
+            position: relative
+            align-items: center
+            input
+                display: none
+            .check-mark
+                position: relative
+                width: 24px
+                height: 24px
+                border: 2px solid $dark-gray-color
+                border-radius: 2px
+            input:checked ~ .check-mark
+                background: $main-color
+                border: none
+                transition: all 0.1s ease
+                &::before
+                    position: absolute
+                    content: ''
+                    left: 7px
+                    top: 1px
+                    width: 7px
+                    height: 13px
+                    border: solid $white-color
+                    border-width: 0 3px 3px 0
+                    -webkit-transform: rotate(45deg)
+                    -ms-transform: rotate(45deg)
+                    transform: rotate(45deg)
+        .check-template
+            width: 100px
+            -webkit-user-select: none
+            -ms-user-select: none
+            user-select: none
+            @include keyframes(pulse)
+                0%
+                    background-color: $gray-color
+                50%
+                    background-color: $dark-gray-color
+                100%
+                    background-color: $gray-color
+            @include animate(pulse, 2s, ease, infinite)
+.img-wrapper
+    width: 50%
+    align-self: flex-end
+    padding: 0 72px
+    align-self: flex-end
+    img
+        width: 100%
+        height: 100%
+.table-wrapper
+    width: 100%
+    border-radius: 28px
+    border: 0.5px solid $dark-gray-color
+    overflow-x: auto
+.table
+    width: 100%
+    text-align: center
+    border-spacing: 0
+    border-collapse: collapse
+    thead
+        background: $main-color
+        tr
+            th
+                font-weight: 500
+                font-size: 18px
+                padding: 21px 0
+                color: $white-color
+                
+    tbody
+        tr
+
+            &:nth-child(even)
+                background: $gray-color
+            &:last-child
+                border: none
+                
+            td
+                font-weight: 400
+                font-size: 16px
+                padding: 24px 40px
+                &:nth-child(4), &:nth-child(5)
+                    color: $main-color
+
+@media screen and ( max-width: 500px )
+    .title
+        margin-bottom: 16px
+    .selector-wrapper
+        .selector-outer
+            width: 100%
+            .selector-inner
+                width: 100%
+                display: flex
+                gap: 8px
+                .selector-select-search
+                    
+                    flex-direction: column
+                    .select-wrapper
+                        width: 100%
+                    .search-wrapper
+                        width: 100%
+    .table
+        align-self: center
+        min-width: 311px
+        thead
+            tr
+                th
+                    white-space: nowrap
+                    padding: 21px 22px
+        tbody
+            tr
+                td
+                    padding: 21px 22px
+        td,th
+            width: auto
+            vertical-align: middle
+@media screen and ( max-width: 992px )
+    .selector-wrapper
+        flex-direction: column
+        .selector-outer
+            width: 100%
+        .img-wrapper
+            display: none
+
+
+

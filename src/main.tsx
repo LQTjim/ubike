@@ -14,7 +14,8 @@ const router = createBrowserRouter(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<SiteInformation />} />
     </Route>
-  )
+  ),
+  { basename: "ubike" }
 );
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

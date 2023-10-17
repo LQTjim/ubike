@@ -1,6 +1,11 @@
-2.0
-https://apis.youbike.com.tw/json/station-yb2.json
-https://apis.youbike.com.tw/json/area-all.json
+原本有另一條 API 是個別縣市拿個別站點
+我最後用的是這個一次拿取全部資料的
+感覺寫起來比較有趣
+API:https://apis.youbike.com.tw/json/station-yb2.json
+
+---
+
+這個是映射表:
 {
 "00":"臺北市",
 "05":"新北市",
@@ -17,7 +22,16 @@ https://apis.youbike.com.tw/json/area-all.json
 
 ---
 
-寫比較久的地方在於 Selector 相關的型別分配
-本來想用 enum 去限制範圍，但是 API 拿到的 code 是上面的 00、10 等等的值，而像是 10、12 這些都會被視為 numericnn 所以不好用，
-且我把選擇縣市這個選項的值設為""(空字串)，最後是先決定是用物件 mapping 這些值和對應的字。
-然後後面麻煩的點在傳遞設定縣市的 value 在預設的情況由 e.target.value 決定 input 內的屬性 text 已經決定這個 value 的 type 是 string 了
+寫比較久的地方在於 Selector 相關的型別分配。
+
+本來想用 enum 去限制範圍(這樣也可以得到比較好的提示)，但是 API 拿到的 code 是上面的 00、10 等等的值，
+
+而像是 10、12 這些都會被視為 numeric 所以不好用，
+且我把選擇縣市這個選項的值設為""(空字串)，
+最後是先決定是用物件 mapping 這些值和對應的字。
+
+最後是用extends string 的方式繞過去。
+
+然後後面麻煩的點在傳遞設定縣市的 value 在預設的情況由 e.target.value 決定 input 內的屬性 text 已經決定這個 value 的 type 是 string 了。
+
+其他記憶比較深的應該是 SASS 的 animation 要多設定一些東西(在作 skeleton 的時候想做呼吸的特效)
